@@ -9,7 +9,6 @@ Repositorio para los codigos del C3D Web (**Work In Progress**)
 ¿Queres sumarte? [Contactanos](mailto:intercambiostransorganicos@gmail.com?subject=[C3D]%20Web%20App)
 
 ### To Do
-- [ ] Agregar pequeño instructivo para compartir codigo
 - [ ] Agregar modo sonido viejo
 - [ ] Agregar switch video on-off en modo nariz
 - [ ] Cambiar tipografia/logo modo osc
