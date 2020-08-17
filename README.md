@@ -6,7 +6,7 @@ Repositorio para los codigos del C3D Web (**Work In Progress**)
 ## Colaboradores
 * [Santi Migueles](https://github.com/santimigueles)
 
-¿Queres sumarte? [Contactanos]((mailto:intercambiostransorganicos@gmail.com?subject=[C3D]%20Source%20Web%20App))
+¿Queres sumarte? [Contactanos](mailto:intercambiostransorganicos@gmail.com?subject=[C3D]%20Source%20Web%20App)
 
 ### To Do
 - [ ] Agregar pequeño instructivo para compartir codigo
