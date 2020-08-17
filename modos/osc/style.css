@@ -12,6 +12,11 @@ body {
   align-items: center;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
 .contenedor {
   display: inline-block;
   position: absolute;
@@ -75,4 +80,20 @@ body {
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
+}
+
+.atras{
+  position: fixed;
+  top: 0;
+  left: 10px;
+  width: 50px;
+  opacity: 0.5;
+}
+
+.atras:hover{
+  opacity: 1;
+}
+
+.fa-long-arrow-alt-left{
+  font-size: 2em;
 }
