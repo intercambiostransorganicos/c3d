@@ -6,12 +6,12 @@
 3. Desde la línea de comandos dirigirse hacia la carpeta del repositorio
 4. Desde la terminal ejecutar el siguiente comando: npm install (requiere tener instalado NPM)
 5. Listo! Ahora podes abrir el index.html dentro de la carpeta “public” dónde te llevará a la página inicial de la aplicación
+6. Como último paso queda hacer un pull-request para que incorporamos tu código a la aplicación principal. Para ello primero hacer un commit y push de tu fork.
+7. Luego desde tu fork en la web de github podes hacer el pull-request
+
 
 ##  Estructura de archivos y carpetas
 En la carpeta “examples” del repositorio encontrarás varios templates para desarrollar tu modo en distintos lenguajes de programación. En este caso deberás copiar la carpeta de “P5js” y copiarla en la carpeta “modos”. En la carpeta modos desarrollarás tu propio entorno audiovisual. 
-
-6. Como último paso queda hacer un pull-request para que incorporamos tu código a la aplicación principal. Para ello primero hacer un commit y push de tu fork.
-7. Luego desde tu fork en la web de github podes hacer el pull-request
 
 ##  Desarrollo en otros lenguajes de programación
 Dentro de la carpeta “examples” del proyecto se ubican algunas plantillas básicas en distintos lenguajes de programación que reciben la data del trackeo del cuerpo a través de OSC. 
