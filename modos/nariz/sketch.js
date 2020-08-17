@@ -8,11 +8,12 @@ let parte = 0;
 let pg;
 let colorPicker
 let mostrar = false;
+let mostrarVideo = false;
 
-function mostrarPop(){
+function mostrarPop() {
   mostrar = !mostrar;
 
-  if(mostrar){
+  if (mostrar) {
     popup.style.width = '200px';
     popup.style.opacity = '1';
   } else {
@@ -21,12 +22,16 @@ function mostrarPop(){
   }
 }
 
+function switchOn() {
+  mostrarVideo = !mostrarVideo;
+}
+
 function posenetStart() {
-    miBoton.style.display = "none";
-    poseNet = ml5.poseNet(video, modelReady);
-    poseNet.on('pose', function(results) {
-      poses = results;
-    });
+  miBoton.style.display = "none";
+  poseNet = ml5.poseNet(video, modelReady);
+  poseNet.on('pose', function(results) {
+    poses = results;
+  });
   start = true;
 }
 
@@ -50,12 +55,16 @@ function draw() {
   push()
   pixelDensity(3.0)
   textSize(15)
-  fill(50,50,50,150)
-  text('Color', width - 145, height - 20)
+  fill(50, 50, 50, 150)
+  text('Color', width - 145, height - 16)
   pop()
   translate(video.width, 0);
   scale(-1, 1);
-  //image(video, 0, 0, 640, 480);
+
+  if (mostrarVideo) {
+    image(video, 0, 0, 320, 240);
+  }
+
   image(pg, 0, 0, width, height);
   drawKeypoints();
 }
@@ -84,6 +93,14 @@ function drawKeypoints() {
 
           nPoseX = poseX;
           nPoseY = poseY;
+
+          if (mostrarVideo) {
+            fill(255, 0, 0);
+            noStroke();
+            let nX = map(keypoint.position.x, 0, width, width - 320, width)
+            let nY = map(keypoint.position.y, 0, height, height - 240, height)
+            ellipse(nX - width / 2 - 320, nY - height / 2 - 80, 10, 10);
+          }
         }
       }
     }
