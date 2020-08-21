@@ -12,9 +12,3 @@ Repositorio para los codigos del C3D Web (**Work In Progress**)
 
 ### ¿Como colaborar?
 [Instructivo](https://github.com/intercambiostransorganicos/c3d/blob/master/instructivo.md)
-
-### To Do
-- [ ] Agregar modo sonido viejo
-- [ ] Agregar re-seleccion de parte del cuerpo en modo webGL
-- [ ] Agregar camera switch cuando no se detecta parte del cuerpo en modo webgl
-- [ ] Cambiar tipografia/logo modo osc
