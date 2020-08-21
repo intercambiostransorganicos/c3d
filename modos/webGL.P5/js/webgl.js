@@ -9,6 +9,18 @@ let parte = 0;
 let start = false
 let mostrar = false;
 
+let parameters = {
+ imageScaleFactor: 0.3,
+ outputStride: 16,
+ flipHorizontal: false,
+ minConfidence: 0.5,
+ maxPoseDetections: 2,
+ scoreThreshold: 0.5,
+ nmsRadius: 20,
+ detectionType: 'single',
+ multiplier: 0.75,
+}
+
 //Variables Santi
 var angle = 0;
 let cam;
@@ -33,7 +45,7 @@ function posenetStart() {
   if (!isNaN(parte)) {
     miBoton.style.display = "none";
     opciones.style.display = "none";
-    poseNet = ml5.poseNet(cam, modelReady);
+    poseNet = ml5.poseNet(cam, parameters, modelReady);
     poseNet.on('pose', function(results) {
       poses = results;
     });

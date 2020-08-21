@@ -10,6 +10,18 @@ let colorPicker
 let mostrar = false;
 let mostrarVideo = false;
 
+let parameters = {
+ imageScaleFactor: 0.3,
+ outputStride: 16,
+ flipHorizontal: false,
+ minConfidence: 0.5,
+ maxPoseDetections: 2,
+ scoreThreshold: 0.5,
+ nmsRadius: 20,
+ detectionType: 'single',
+ multiplier: 0.75,
+}
+
 function mostrarPop() {
   mostrar = !mostrar;
 
@@ -28,7 +40,7 @@ function switchOn() {
 
 function posenetStart() {
   miBoton.style.display = "none";
-  poseNet = ml5.poseNet(video, modelReady);
+  poseNet = ml5.poseNet(video, parameters, modelReady);
   poseNet.on('pose', function(results) {
     poses = results;
   });
