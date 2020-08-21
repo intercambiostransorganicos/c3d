@@ -69,10 +69,6 @@ function draw() {
 
     drawKeypoints();
 
-    //dx -250 a 1020
-    //dy -258 a 377
-    //mouseColorx 27 650
-    //cursorZ -6 a 471
     let dx = poseX;
     let dy = poseY;
     let mouseColorx = map(poseX, 0, width * 0.7, 0, 255);
