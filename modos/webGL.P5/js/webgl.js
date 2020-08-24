@@ -156,7 +156,6 @@ function draw() {
       plane(650, 600);
       angle += 0.005;
     } else {
-      clear()
       background(0)
     }
   }
