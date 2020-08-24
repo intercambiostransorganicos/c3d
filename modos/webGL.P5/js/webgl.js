@@ -4,6 +4,7 @@ let poses = [];
 let poseX, poseY;
 let miBoton = document.querySelector('.empezar');
 let opciones = document.querySelector('.selector');
+let miSelect = document.querySelector('.misBotones');
 let popup = document.querySelector(".popup")
 let parte = 0;
 let start = false
@@ -44,7 +45,10 @@ function mostrarPop(){
 function posenetStart() {
   if (!isNaN(parte)) {
     miBoton.style.display = "none";
-    opciones.style.display = "none";
+    miSelect.style.display = "block";
+    miSelect.style.placeItems = "unset";
+    miSelect.style.top = "60%";
+    miSelect.style.left = "75%";
     poseNet = ml5.poseNet(cam, parameters, modelReady);
     poseNet.on('pose', function(results) {
       poses = results;
