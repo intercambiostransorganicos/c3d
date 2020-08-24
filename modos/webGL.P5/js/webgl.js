@@ -7,8 +7,10 @@ let opciones = document.querySelector('.selector');
 let miSelect = document.querySelector('.misBotones');
 let popup = document.querySelector(".popup")
 let parte = 0;
+let parteCuerpo;
 let start = false
 let mostrar = false;
+let miFuente;
 
 let parameters = {
  imageScaleFactor: 0.3,
@@ -28,6 +30,7 @@ let cam;
 
 opciones.addEventListener('change', (event) => {
    parte = parseInt(event.target.value);
+   parteCuerpo = event.target[parte+1].innerHTML;
 })
 
 function mostrarPop(){
@@ -57,7 +60,6 @@ function posenetStart() {
   start = true;
 }
 
-
 function setup() {
   createCanvas(500, 500, WEBGL);
   cam = createCapture(VIDEO);
@@ -73,85 +75,90 @@ function draw() {
 
     drawKeypoints();
 
-    let dx = poseX;
-    let dy = poseY;
-    let mouseColorx = map(poseX, 0, width * 0.7, 0, 255);
-    let cursorZ = map(poseY, 0, width * 0.7, 0, 375)
-    let v = createVector(dx, dy, 0);
-    v.div(100);
+    if(poseX != undefined || poseY != undefined){
+      let dx = poseX;
+      let dy = poseY;
+      let mouseColorx = map(poseX, 0, width * 0.7, 0, 255);
+      let cursorZ = map(poseY, 0, width * 0.7, 0, 375)
+      let v = createVector(dx, dy, 0);
+      v.div(100);
 
-    ambientLight(255, 100, 50)
-    directionalLight(255, 0, 255, dx, dy, 0);
-    pointLight(0, 0, 255, 500, 0, 0);
-    pointLight(0, 255, 0, 0, 200, 0);
-    pointLight(0, 255, 0, 0, -200, 0);
-    pointLight(255, mouseColorx, 100, 0, 0, 200);
+      ambientLight(255, 100, 50)
+      directionalLight(255, 0, 255, dx, dy, 0);
+      pointLight(0, 0, 255, 500, 0, 0);
+      pointLight(0, 255, 0, 0, 200, 0);
+      pointLight(0, 255, 0, 0, -200, 0);
+      pointLight(255, mouseColorx, 100, 0, 0, 200);
 
-    background(0);
+      background(0);
 
-    translate(0, 0, cursorZ);
+      translate(0, 0, cursorZ);
 
-    let fov = map(poseX * 3, 0, width, 0, PI);
-    let cameraZ = (height / 2) - tan(PI / 3);
-    perspective(fov, width / height, cameraZ / 50.0, cameraZ * 50.0);
+      let fov = map(poseX * 3, 0, width, 0, PI);
+      let cameraZ = (height / 2) - tan(PI / 3);
+      perspective(fov, width / height, cameraZ / 50.0, cameraZ * 50.0);
 
-    push();
-    rotateX(angle);
-    rotateY(angle * 0.2);
-    rotateZ(angle * 0.2);
+      push();
+      rotateX(angle);
+      rotateY(angle * 0.2);
+      rotateZ(angle * 0.2);
 
-    noStroke();
+      noStroke();
 
-    texture(cam);
+      texture(cam);
 
-    box(220);
-    box(50);
-    box(20);
-    box(8);
-    box(3);
-    box(1);
-    pop();
+      box(220);
+      box(50);
+      box(20);
+      box(8);
+      box(3);
+      box(1);
+      pop();
 
-    push();
-    translate(0, 250, 100);
-    rotateX(HALF_PI);
+      push();
+      translate(0, 250, 100);
+      rotateX(HALF_PI);
 
-    noStroke();
-    texture(cam);
-    plane(650, 600);
-    pop();
+      noStroke();
+      texture(cam);
+      plane(650, 600);
+      pop();
 
-    push();
-    translate(0, -350, 100);
-    rotateX(HALF_PI);
+      push();
+      translate(0, -350, 100);
+      rotateX(HALF_PI);
 
-    noStroke();
-    texture(cam)
-    plane(650, 600);
-    pop();
+      noStroke();
+      texture(cam)
+      plane(650, 600);
+      pop();
 
-    push();
-    translate(330, -50, 100);
-    rotateY(HALF_PI);
-    texture(cam);
-    noStroke();
-    plane(650, 600);
-    pop();
+      push();
+      translate(330, -50, 100);
+      rotateY(HALF_PI);
+      texture(cam);
+      noStroke();
+      plane(650, 600);
+      pop();
 
-    push();
-    translate(-330, -50, 100);
-    rotateY(HALF_PI);
-    texture(cam);
-    noStroke();
-    plane(650, 600);
-    pop();
+      push();
+      translate(-330, -50, 100);
+      rotateY(HALF_PI);
+      texture(cam);
+      noStroke();
+      plane(650, 600);
+      pop();
 
-    translate(0, -50, -230);
+      translate(0, -50, -230);
 
-    noStroke();
-    texture(cam);
-    plane(650, 600);
-    angle += 0.005;
+      noStroke();
+      texture(cam);
+      plane(650, 600);
+      angle += 0.005;
+    } else {
+      clear()
+      background(0)
+    }
   }
 }
 
