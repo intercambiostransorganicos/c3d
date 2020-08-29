@@ -4,9 +4,10 @@ let poses = [];
 let poseX, poseY, nPoseX, nPoseY;
 let miBoton = document.querySelector('.empezar');
 let popup = document.querySelector(".popup")
+let colorPicker = document.querySelector('#colorPicker')
+let miColor = '#ff0000';
 let parte = 0;
 let pg;
-let colorPicker
 let mostrar = false;
 let mostrarVideo = false;
 
@@ -38,6 +39,11 @@ function switchOn() {
   mostrarVideo = !mostrarVideo;
 }
 
+colorPicker.addEventListener('change',function(event){
+  miColor = event.target.value;
+  console.log(miColor);
+})
+
 function posenetStart() {
   miBoton.style.display = "none";
   poseNet = ml5.poseNet(video, parameters, modelReady);
@@ -51,11 +57,7 @@ function setup() {
   let cnv = createCanvas(window.innerWidth, window.innerHeight)
   cnv.style('pointer-events', 'none')
 
-  pixelDensity(1);
   pg = createGraphics(width, height);
-
-  colorPicker = createColorPicker('#ed225d');
-  colorPicker.position(width - 150, height - 50);
 
   video = createCapture(VIDEO);
   video.size(width, height)
@@ -64,12 +66,6 @@ function setup() {
 
 
 function draw() {
-  push()
-  pixelDensity(3.0)
-  textSize(15)
-  fill(50, 50, 50, 150)
-  text('Color', width - 145, height - 16)
-  pop()
   translate(video.width, 0);
   scale(-1, 1);
 
@@ -99,20 +95,12 @@ function drawKeypoints() {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
 
-          pg.stroke(colorPicker.value());
+          pg.stroke(miColor);
           pg.strokeWeight(5);
           pg.line(poseX, poseY, nPoseX, nPoseY);
 
           nPoseX = poseX;
           nPoseY = poseY;
-
-          if (mostrarVideo) {
-            fill(255, 0, 0);
-            noStroke();
-            let nX = map(keypoint.position.x, 0, width, width - 320, width)
-            let nY = map(keypoint.position.y, 0, height, height - 240, height)
-            ellipse(nX - width / 2 - 320, nY - height / 2 - 80, 10, 10);
-          }
         }
       }
     }
