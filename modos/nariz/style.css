@@ -9,7 +9,7 @@ h1 {
   text-align: center;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
@@ -28,18 +28,27 @@ button {
   margin-bottom: 150px;
 }
 
-button:hover{
-  background-color: rgb(220,220,220);
+button:hover {
+  background-color: rgb(220, 220, 220);
 }
 
 .misBotones {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   position: absolute;
-  top: 0px;
+  top: 50%;
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.botones{
+  flex: 0 1 150px;
+}
+
+.empezarMouse{
+  margin-left: 100px;
 }
 
 .container {
@@ -71,18 +80,17 @@ button:hover{
   right: 40px;
   border-radius: 10px;
   opacity: 0;
-
   transition: width 2s, opacity 1s;
 }
 
-.popText{
+.popText {
   flex: 0 0 150px;
   font-size: 13px;
   font-style: italic;
   opacity: 0.5;
 }
 
-.atras{
+.atras {
   position: fixed;
   top: 0;
   left: 10px;
@@ -90,84 +98,114 @@ button:hover{
   opacity: 0.5;
 }
 
-.atras:hover{
+.atras:hover {
   opacity: 1;
 }
 
-.fa-long-arrow-alt-left{
+.fa-long-arrow-alt-left {
   font-size: 2em;
 }
 
 .onoffswitch {
-    position: absolute;
-    width: 50px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-    bottom: 3.5%;
-    right: 13%;
-}
-.onoffswitch-checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    /* border: 2px solid #999999;  */
-    border-radius: 20px;
-}
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
-}
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
-    font-size: 10px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    box-sizing: border-box;
-}
-.onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    background-color: #00C0F0; color: #FFFFFF;
-}
-.onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
-    text-align: right;
-}
-.onoffswitch-switch {
-    display: block; width: 15px; margin: 6px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    right: 26px;
-    border: 2px; border-radius: 20px;
-    transition: all 0.3s ease-in 0s;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
+  position: absolute;
+  width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  bottom: 3.5%;
+  right: 13%;
 }
 
-#colorPicker{
+.onoffswitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  /* border: 2px solid #999999;  */
+  border-radius: 20px;
+}
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  font-size: 10px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #00C0F0;
+  color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right;
+}
+
+.onoffswitch-switch {
+  display: block;
+  width: 15px;
+  margin: 6px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 26px;
+  border: 2px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+  right: 0px;
+}
+
+#colorPicker {
   position: absolute;
   bottom: 4%;
   right: 6%;
 }
 
-#switchDesc{
+#switchDesc {
   position: absolute;
   bottom: 0;
   right: 13.5%;
   font-size: 15px;
-  color: rgba(50,50,50,0.6);
+  color: rgba(50, 50, 50, 0.6);
 }
 
-#colorDesc{
+#colorDesc {
   position: absolute;
   bottom: 0;
   right: 7.3%;
   font-size: 15px;
-  color: rgba(50,50,50,0.6);
+  color: rgba(50, 50, 50, 0.6);
 }

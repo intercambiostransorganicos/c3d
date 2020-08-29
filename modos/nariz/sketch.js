@@ -2,31 +2,34 @@ let video;
 let poseNet;
 let poses = [];
 let poseX, poseY, nPoseX, nPoseY;
-let miBoton = document.querySelector('.empezar');
+let empezarPose = document.querySelector('.empezarPose');
+let empezarMouse = document.querySelector('.empezarMouse');
 let popup = document.querySelector(".popup")
 let colorPicker = document.querySelector('#colorPicker')
 let miColor = '#ff0000';
 let parte = 0;
 let pg;
-let mostrar = false;
+let mostrarAyuda = false;
 let mostrarVideo = false;
+let switchMouse = false;
+let dibujar = false;
 
 let parameters = {
- imageScaleFactor: 0.3,
- outputStride: 16,
- flipHorizontal: false,
- minConfidence: 0.5,
- maxPoseDetections: 2,
- scoreThreshold: 0.5,
- nmsRadius: 20,
- detectionType: 'single',
- multiplier: 0.75,
+  imageScaleFactor: 0.3,
+  outputStride: 16,
+  flipHorizontal: false,
+  minConfidence: 0.5,
+  maxPoseDetections: 2,
+  scoreThreshold: 0.5,
+  nmsRadius: 20,
+  detectionType: 'single',
+  multiplier: 0.75,
 }
 
 function mostrarPop() {
-  mostrar = !mostrar;
+  mostrarAyuda = !mostrarAyuda;
 
-  if (mostrar) {
+  if (mostrarAyuda) {
     popup.style.width = '200px';
     popup.style.opacity = '1';
   } else {
@@ -39,18 +42,24 @@ function switchOn() {
   mostrarVideo = !mostrarVideo;
 }
 
-colorPicker.addEventListener('change',function(event){
+colorPicker.addEventListener('change', function(event) {
   miColor = event.target.value;
   console.log(miColor);
 })
 
 function posenetStart() {
-  miBoton.style.display = "none";
+  empezarPose.style.display = "none";
+  empezarMouse.style.display = "none";
   poseNet = ml5.poseNet(video, parameters, modelReady);
   poseNet.on('pose', function(results) {
     poses = results;
   });
-  start = true;
+}
+
+function mouseStart() {
+  empezarMouse.style.display = "none";
+  empezarPose.style.display = "none";
+  switchMouse = true;
 }
 
 function setup() {
@@ -66,15 +75,23 @@ function setup() {
 
 
 function draw() {
-  translate(video.width, 0);
-  scale(-1, 1);
-
   if (mostrarVideo) {
-    image(video, 0, 0, 320, 240);
+    image(video, width-320, 0, 320, 240);
   }
 
-  image(pg, 0, 0, width, height);
-  drawKeypoints();
+  if (!switchMouse) {
+    translate(video.width, 0);
+    scale(-1, 1);
+    image(pg, 0, 0, width, height);
+    drawKeypoints();
+  } else {
+    if (dibujar) {
+      pg.stroke(miColor);
+      pg.strokeWeight(5);
+      pg.line(mouseX, mouseY, pmouseX, pmouseY);
+      image(pg, 0, 0, width, height);
+    }
+  }
 }
 
 function modelReady() {
@@ -107,8 +124,17 @@ function drawKeypoints() {
   }
 }
 
-function keyPressed() {
+function mousePressed(){
+  dibujar = true;
+}
+
+function mouseReleased(){
+  dibujar = false;
+}
+
+function keyPressed(e) {
   pg.clear();
+  clear();
 }
 
 function windowResized() {
