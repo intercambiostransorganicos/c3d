@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="style.css">
+  <title>C3D - Esfera</title>
+</head>
+
+<body>
+
+  <div class="misBotones">
+    <select class="selector" name="Select" onchange="posenetStart()">
+      <option value="Seleccionar" selected>Seleccionar...</option>
+      <option value="0">Nariz</option>
+      <option value="1">Ojo Izquierdo</option>
+      <option value="2">Ojo Derecho</option>
+      <option value="3">Oreja Izquierda</option>
+      <option value="4">Oreja Derecha</option>
+      <option value="5">Hombro Izquierdo</option>
+      <option value="6">Hombro Derecho</option>
+      <option value="7">Codo Izquierdo</option>
+      <option value="8">Codo Derecho</option>
+      <option value="9">Mano Izquierda</option>
+      <option value="10">Mano Derecha</option>
+      <option value="11">Cadera Izquierda</option>
+      <option value="12">Cadera Derecha</option>
+      <option value="13">Rodilla Izquierda</option>
+      <option value="14">Rodilla Derecha</option>
+      <option value="15">Talon Izquierdo</option>
+      <option value="16">Talon Derecho</option>
+    </select>
+    <button type="button" name="button" class="empezarMouse botones" onclick="mouseStart()">Mouse</button>
+  </div>
+
+  <div class="container">
+    <i class="iconbtn fas fa-question-circle" onclick="mostrarPop()"></i>
+  </div>
+
+  <div class="atras">
+    <a class="fas fa-long-arrow-alt-left" href="../../index.html"></a>
+  </div>
+
+  <div class="popup">
+    <p class="popText">En este modo se controla una esfera con alguna parte del cuerpo o el mouse</p>
+  </div>
+
+  <!-- <div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" onclick="switchOn()">
+    <label class="onoffswitch-label" for="myonoffswitch">
+      <span class="onoffswitch-inner"></span>
+      <span class="onoffswitch-switch"></span>
+    </label>
+  </div> -->
+
+  <!-- <span id="switchDesc">Video</span> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js" type="text/javascript"></script>
+  <script src="sketch.js" charset="utf-8"></script>
+</body>
+
+</html>

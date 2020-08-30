@@ -16,7 +16,7 @@ h1 {
 
 .content {
   display: grid;
-   height: 30vh;
+   height: 60vh;
    width: 400px;
    grid-gap: 4rem;
    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
