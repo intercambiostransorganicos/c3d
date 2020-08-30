@@ -8,7 +8,6 @@ let popup = document.querySelector(".popup")
 let colorPicker = document.querySelector('#colorPicker')
 let miColor = '#ff0000';
 let parte = 0;
-let pg;
 let mostrarAyuda = false;
 let mostrarVideo = false;
 let switchMouse = false;
@@ -50,6 +49,34 @@ colorPicker.addEventListener('change', function(event) {
 function posenetStart() {
   empezarPose.style.display = "none";
   empezarMouse.style.display = "none";
+
+  let sketchPose = function(p) {
+    p.setup = function() {
+      p.cnv = p.createCanvas(window.innerWidth, window.innerHeight)
+      p.cnv.style('pointer-events', 'none')
+      video = p.createCapture(p.VIDEO);
+      video.size(p.width, p.height)
+      video.hide();
+      p.pg = p.createGraphics(p.width, p.height);
+    }
+
+    p.draw = function() {
+      if (mostrarVideo) {
+        p.image(video, p.width - 320, 0, 320, 240);
+      }
+      p.translate(video.width, 0);
+      p.scale(-1, 1);
+      p.image(p.pg, 0, 0, p.width, p.height);
+      drawKeypoints(p);
+    }
+
+    p.windowResized = function() {
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
+    }
+  }
+
+  let myp5 = new p5(sketchPose);
+
   poseNet = ml5.poseNet(video, parameters, modelReady);
   poseNet.on('pose', function(results) {
     poses = results;
@@ -60,47 +87,51 @@ function mouseStart() {
   empezarMouse.style.display = "none";
   empezarPose.style.display = "none";
   switchMouse = true;
-}
 
-function setup() {
-  let cnv = createCanvas(window.innerWidth, window.innerHeight)
-  cnv.style('pointer-events', 'none')
+  let sketchMouse = function(p) {
+    p.setup = function() {
+      p.cnv = p.createCanvas(window.innerWidth, window.innerHeight)
+      p.cnv.style('pointer-events', 'none')
+      p.pg = p.createGraphics(p.width, p.height);
+    }
 
-  pg = createGraphics(width, height);
+    p.draw = function() {
+      if (dibujar) {
+        p.pg.stroke(miColor);
+        p.pg.strokeWeight(5);
+        p.pg.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY);
+        p.image(p.pg, 0, 0, p.width, p.height);
+      }
+    }
 
-  video = createCapture(VIDEO);
-  video.size(width, height)
-  video.hide();
-}
+    p.keyPressed = function(e) {
+      p.pg.clear();
+      p.clear();
+    }
 
+    p.mousePressed = function() {
+      dibujar = true;
+    }
 
-function draw() {
-  if (mostrarVideo) {
-    image(video, width-320, 0, 320, 240);
-  }
+    p.mouseReleased = function() {
+      dibujar = false;
+    }
 
-  if (!switchMouse) {
-    translate(video.width, 0);
-    scale(-1, 1);
-    image(pg, 0, 0, width, height);
-    drawKeypoints();
-  } else {
-    if (dibujar) {
-      pg.stroke(miColor);
-      pg.strokeWeight(5);
-      pg.line(mouseX, mouseY, pmouseX, pmouseY);
-      image(pg, 0, 0, width, height);
+    p.windowResized = function() {
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
     }
   }
+
+  let myp5 = new p5(sketchMouse);
 }
 
 function modelReady() {
   console.log('model ready');
 }
 
-function drawKeypoints() {
+function drawKeypoints(p) {
   // Loop through all the poses detected
-  for (let i = 0; i < min(poses.length, 1); i++) {
+  for (let i = 0; i < p.min(poses.length, 1); i++) {
     // For each pose detected, loop through all the keypoints
     for (let j = 0; j < poses[i].pose.keypoints.length; j++) {
       // A keypoint is an object describing a body part (like rightArm or leftShoulder)
@@ -112,9 +143,9 @@ function drawKeypoints() {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
 
-          pg.stroke(miColor);
-          pg.strokeWeight(5);
-          pg.line(poseX, poseY, nPoseX, nPoseY);
+          p.pg.stroke(miColor);
+          p.pg.strokeWeight(5);
+          p.pg.line(poseX, poseY, nPoseX, nPoseY);
 
           nPoseX = poseX;
           nPoseY = poseY;
@@ -122,21 +153,4 @@ function drawKeypoints() {
       }
     }
   }
-}
-
-function mousePressed(){
-  dibujar = true;
-}
-
-function mouseReleased(){
-  dibujar = false;
-}
-
-function keyPressed(e) {
-  pg.clear();
-  clear();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }
