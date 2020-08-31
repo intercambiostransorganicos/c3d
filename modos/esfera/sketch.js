@@ -94,13 +94,16 @@ function mouseStart() {
     }
 
     p.draw = function() {
-      p.clear()
+      let colorX = p.map(p.mouseX,0,p.width,0,255)
+      let colorY = p.map(p.mouseY,0,p.height,0,255)
+
+     p.clear()
       p.translate(p.mouseX - p.width / 2, p.mouseY - p.height / 2)
       p.rotateY(p.mouseY / 2)
       p.rotateX(p.mouseX / 2)
 
       p.noFill()
-      p.stroke(255, 150)
+      p.stroke(colorX, colorY, colorX/2 + colorY/2, 255)
       p.sphere(100, 24)
     }
 
@@ -129,13 +132,16 @@ function drawKeypoints(p) {
         if (j == parte) {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
+          let colorX = p.map(poseX,0,p.width,0,255)
+          let colorY = p.map(poseY,0,p.height,0,255)
           p.scale(-1, 1);
           p.clear()
           p.translate(poseX-p.width/2, poseY-p.height/2)
           p.rotateY(poseY/2)
           p.rotateX(poseX/2)
           p.noFill()
-          p.stroke(255,150)
+
+          p.stroke(colorX,colorY,colorX/2 + colorY/2, 150)
           p.sphere(100, 24)
         }
       }
