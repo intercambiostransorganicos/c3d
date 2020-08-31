@@ -7,7 +7,7 @@ body {
 
 h1 {
   font-size: 5em;
-  margin-left: 140px;
+  margin-left: 14%;
   margin-top: 0;
   background: -webkit-linear-gradient(#407170, #42dfdb);
   -webkit-background-clip: text;
@@ -47,7 +47,7 @@ a{
   color: inherit;
 }
 
-img{
+#logo{
   position: absolute;
   bottom: 0px;
   right: 0px;
