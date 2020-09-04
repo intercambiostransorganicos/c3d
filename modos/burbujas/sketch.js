@@ -173,7 +173,7 @@ function drawKeypoints(p) {
 
 function Bubble(i, p) {
 
-  this.r = Math.random()* (35+15);
+  this.r = (Math.random()* (35)+15);
   this.posX = i + 104.3 + 14.6;
   this.posY = i + 53.3 + 35.2;
   this.time = p.millis() / 1000;
