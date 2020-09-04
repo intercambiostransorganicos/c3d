@@ -12,6 +12,11 @@ let mostrarAyuda = false;
 let mostrarVideo = false;
 let switchMouse = false;
 let dibujar = false;
+let easing = 0.5;
+let miX = 0
+let miY = 0
+let px = 0
+let py = 0;
 
 let parameters = {
   imageScaleFactor: 0.3,
@@ -99,8 +104,12 @@ function mouseStart() {
       if (dibujar) {
         p.pg.stroke(miColor);
         p.pg.strokeWeight(5);
+
         p.pg.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY);
         p.image(p.pg, 0, 0, p.width, p.height);
+
+        px = miX;
+        py = miY
       }
     }
 
@@ -143,12 +152,15 @@ function drawKeypoints(p) {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
 
+          miX += (poseX - miX) * easing;
+          miY += (poseY - miY) * easing;
+
           p.pg.stroke(miColor);
           p.pg.strokeWeight(5);
-          p.pg.line(poseX, poseY, nPoseX, nPoseY);
+          p.pg.line(miX, miY, nPoseX, nPoseY);
 
-          nPoseX = poseX;
-          nPoseY = poseY;
+          nPoseX = miX;
+          nPoseY = miY;
         }
       }
     }
