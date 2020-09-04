@@ -3,6 +3,7 @@ body {
   background: url(../../assets/burbujas_bg.png);
   background-size: cover;
   font-family: 'Hind Siliguri', sans-serif;
+  margin: 0;
 }
 
 a {
