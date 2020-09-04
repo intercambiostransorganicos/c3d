@@ -67,7 +67,11 @@ function posenetStart() {
 
     p.draw = function() {
       if (mostrarVideo) {
-        p.image(video, p.width - 320, 0, 320, 240);
+        p.push()
+        p.translate(video.width, 0);
+        p.scale(-1, 1);
+        p.image(video, 0, 0, 320, 240);
+        p.pop()
       }
       p.translate(video.width, 0);
       p.scale(-1, 1);
