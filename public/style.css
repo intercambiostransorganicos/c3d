@@ -1,0 +1,54 @@
+/*Color palettes: https://mycolor.space/?hex=%239ACCC7&sub=1 */
+body {
+  background: url(../assets/fondo.jpg);
+  background-size: cover;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+h1 {
+  font-size: 5em;
+  margin-left: 140px;
+  margin-top: 0;
+  background: -webkit-linear-gradient(#407170, #42dfdb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content {
+  display: grid;
+   height: 50vh;
+   width: 300px;
+   grid-gap: 1rem;
+   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+   margin-left: 50px;
+}
+
+.child{
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+  background: rgb(114,165,164,100);
+  font-size: 2rem;
+  font-weight: 300;
+  /* text-align: center;
+  vertical-align: middle;
+  line-height: 180px; */
+
+}
+
+.child:hover{
+  background: #a0f9f0;
+}
+
+a{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+img{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}

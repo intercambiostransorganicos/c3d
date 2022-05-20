@@ -1,0 +1,22 @@
+{
+  "name": "prueba-osc",
+  "version": "1.0.0",
+  "description": "pruebini",
+  "main": "bridge.js",
+  "scripts": {
+    "start": "node bridge.js",
+    "dev": "nodemon bridge.js"
+  },
+  "author": "Maximo Signiorini",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gh-pages": "^4.0.0",
+    "http": "0.0.1-security",
+    "node-osc": "^5.1.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
