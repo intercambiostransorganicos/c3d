@@ -26,7 +26,7 @@ function setup() {
 
   setupOsc(12000, 3334);
 
-  video = createCapture(VIDEO);
+  video = createCapture(video);
   video.size(width, height)
   video.hide();
 
